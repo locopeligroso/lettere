@@ -30,7 +30,7 @@ console.log(cursorX)
  * Base
  */
 // Debug
-const gui = new GUI({ width: 400 })
+const gui = new GUI({ width: 400 }).close()
 
 
 // Canvas
@@ -101,14 +101,23 @@ fontLoader.load(
             letterMesh.position.copy(position);
             letterMesh.castShadow = true,
             letters.add(letterMesh);
+            
+            return letterMesh
         };
 
         // stringa, posizione x, y, z, spessore
-        generateLetter('e', new THREE.Vector3(-1, 0.5, 0), spessore * 2)
+        const letterS = generateLetter('e', new THREE.Vector3(-1, 0.5, 0), spessore * 2)
         generateLetter('p', new THREE.Vector3(-1.05, 0.1, 0), spessore * 0.5)
         generateLetter('i', new THREE.Vector3(-0.28, -0.2, 0), spessore  * 0.5)
         generateLetter('c', new THREE.Vector3(-0.32, 0.5, 0), spessore)
         generateLetter('o', new THREE.Vector3(0.4, -0.4, 0), spessore * 2)
+        
+        
+        // Animazione lettera per lettera
+        gsap.from(letterS.position,{
+         y: -4,
+         delay: 1
+        })
     }
 
 )
